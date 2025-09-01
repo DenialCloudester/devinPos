@@ -1,0 +1,119 @@
+@page
+@model POSApp.Pages.Sales.DetailsModel
+@{
+    ViewData["Title"] = "Sale Details";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-receipt me-2"></i>Sale Details - #@Model.Sale.Id.ToString("D6")</h2>
+    <a asp-page="./Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-1"></i>Back to Sales
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-list me-2"></i>Sale Items</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Unit Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Sale.SaleItems)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@item.Product?.Name</strong>
+                                        @if (!string.IsNullOrEmpty(item.Product?.Description))
+                                        {
+                                            <br><small class="text-muted">@item.Product.Description</small>
+                                        }
+                                    </td>
+                                    <td>$@item.UnitPrice.ToString("F2")</td>
+                                    <td>@item.Quantity</td>
+                                    <td><strong>$@item.TotalPrice.ToString("F2")</strong></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">Subtotal</th>
+                                <th>$@Model.Sale.SubTotal.ToString("F2")</th>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Tax (@((Model.Sale.TaxAmount / Model.Sale.SubTotal * 100).ToString("F1"))%)</th>
+                                <th>$@Model.Sale.TaxAmount.ToString("F2")</th>
+                            </tr>
+                            <tr class="table-dark">
+                                <th colspan="3">Total</th>
+                                <th>$@Model.Sale.TotalAmount.ToString("F2")</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle me-2"></i>Sale Information</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-5">Sale ID:</dt>
+                    <dd class="col-sm-7">#@Model.Sale.Id.ToString("D6")</dd>
+                    
+                    <dt class="col-sm-5">Date:</dt>
+                    <dd class="col-sm-7">@Model.Sale.SaleDate.ToString("MMM dd, yyyy")</dd>
+                    
+                    <dt class="col-sm-5">Time:</dt>
+                    <dd class="col-sm-7">@Model.Sale.SaleDate.ToString("HH:mm:ss")</dd>
+                    
+                    <dt class="col-sm-5">Cashier:</dt>
+                    <dd class="col-sm-7">@Model.Sale.User?.Email</dd>
+                    
+                    <dt class="col-sm-5">Payment:</dt>
+                    <dd class="col-sm-7">
+                        @switch (Model.Sale.PaymentMethod)
+                        {
+                            case "Cash":
+                                <span class="badge bg-success">@Model.Sale.PaymentMethod</span>
+                                break;
+                            case "Credit Card":
+                                <span class="badge bg-primary">@Model.Sale.PaymentMethod</span>
+                                break;
+                            case "Debit Card":
+                                <span class="badge bg-info">@Model.Sale.PaymentMethod</span>
+                                break;
+                            default:
+                                <span class="badge bg-secondary">@Model.Sale.PaymentMethod</span>
+                                break;
+                        }
+                    </dd>
+                    
+                    <dt class="col-sm-5">Items:</dt>
+                    <dd class="col-sm-7">@Model.Sale.SaleItems.Sum(i => i.Quantity) units</dd>
+                </dl>
+                
+                @if (!string.IsNullOrEmpty(Model.Sale.Notes))
+                {
+                    <hr>
+                    <h6>Notes:</h6>
+                    <p class="text-muted">@Model.Sale.Notes</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
