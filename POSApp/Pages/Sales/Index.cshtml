@@ -5,47 +5,43 @@
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2><i class="fas fa-chart-line me-2"></i>Sales History</h2>
+    <h1 class="display-6 fw-bold" style="color: var(--primary-color);">
+        <i class="fas fa-chart-line me-3" style="color: var(--accent-color);"></i>Sales Dashboard
+    </h1>
     <div>
-        <span class="badge bg-primary fs-6">Total Sales: $@Model.TotalSales.ToString("F2")</span>
+        <span class="badge fs-6" style="background: linear-gradient(135deg, var(--success-color), #229954); padding: 0.75rem 1.5rem; border-radius: 25px;">
+            Total Sales: $@Model.TotalSales.ToString("F2")
+        </span>
     </div>
 </div>
 
 <div class="row mb-4">
-    <div class="col-md-3">
-        <div class="card text-center">
-            <div class="card-body">
-                <i class="fas fa-shopping-cart fa-2x text-primary mb-2"></i>
-                <h5 class="card-title">@Model.TotalTransactions</h5>
-                <p class="card-text text-muted">Total Transactions</p>
-            </div>
+    <div class="col-md-3 mb-3">
+        <div class="stats-card">
+            <i class="fas fa-shopping-cart fa-2x text-primary"></i>
+            <h5>@Model.TotalTransactions</h5>
+            <p class="card-text">Total Transactions</p>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-center">
-            <div class="card-body">
-                <i class="fas fa-dollar-sign fa-2x text-success mb-2"></i>
-                <h5 class="card-title">$@Model.TotalSales.ToString("F2")</h5>
-                <p class="card-text text-muted">Total Revenue</p>
-            </div>
+    <div class="col-md-3 mb-3">
+        <div class="stats-card" style="border-left-color: var(--success-color);">
+            <i class="fas fa-dollar-sign fa-2x" style="color: var(--success-color);"></i>
+            <h5>$@Model.TotalSales.ToString("F2")</h5>
+            <p class="card-text">Total Revenue</p>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-center">
-            <div class="card-body">
-                <i class="fas fa-calendar-day fa-2x text-info mb-2"></i>
-                <h5 class="card-title">$@Model.TodaySales.ToString("F2")</h5>
-                <p class="card-text text-muted">Today's Sales</p>
-            </div>
+    <div class="col-md-3 mb-3">
+        <div class="stats-card" style="border-left-color: var(--warning-color);">
+            <i class="fas fa-calendar-day fa-2x" style="color: var(--warning-color);"></i>
+            <h5>$@Model.TodaySales.ToString("F2")</h5>
+            <p class="card-text">Today's Sales</p>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-center">
-            <div class="card-body">
-                <i class="fas fa-chart-bar fa-2x text-warning mb-2"></i>
-                <h5 class="card-title">$@Model.AverageSale.ToString("F2")</h5>
-                <p class="card-text text-muted">Average Sale</p>
-            </div>
+    <div class="col-md-3 mb-3">
+        <div class="stats-card" style="border-left-color: #9b59b6;">
+            <i class="fas fa-chart-bar fa-2x" style="color: #9b59b6;"></i>
+            <h5>$@Model.AverageSale.ToString("F2")</h5>
+            <p class="card-text">Average Sale</p>
         </div>
     </div>
 </div>
