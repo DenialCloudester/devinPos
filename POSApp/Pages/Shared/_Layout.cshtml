@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-4" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
                     <i class="fas fa-cash-register me-2"></i>POS System
@@ -51,15 +51,25 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container-fluid px-4">
+        <main role="main" class="pb-4 fade-in">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - POS System - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="footer border-top">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Professional POS System</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-0">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        <a asp-area="" asp-page="/Privacy">Privacy Policy</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 

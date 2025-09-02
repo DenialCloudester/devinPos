@@ -4,14 +4,20 @@
     ViewData["Title"] = "Point of Sale";
 }
 
+<div class="mb-4">
+    <h1 class="display-6 fw-bold" style="color: var(--primary-color);">
+        <i class="fas fa-cash-register me-3" style="color: var(--accent-color);"></i>Point of Sale
+    </h1>
+</div>
+
 <div class="row">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h4><i class="fas fa-shopping-cart me-2"></i>Products</h4>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="searchProducts" placeholder="Search products...">
-                    <button class="btn btn-outline-secondary" type="button" id="searchBtn">
+                <h4><i class="fas fa-shopping-cart me-2"></i>Product Catalog</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchProducts" placeholder="Search products by name...">
+                    <button class="btn btn-outline-light" type="button" id="searchBtn">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -42,7 +48,7 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-header">
-                <h4><i class="fas fa-receipt me-2"></i>Current Sale</h4>
+                <h4><i class="fas fa-receipt me-2"></i>Shopping Cart</h4>
             </div>
             <div class="card-body">
                 <div id="cartItems" style="max-height: 300px; overflow-y: auto;">
